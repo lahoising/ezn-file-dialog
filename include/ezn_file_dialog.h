@@ -1,15 +1,12 @@
 #ifndef __EZN_FILE_DIALOG_H__
 #define __EZN_FILE_DIALOG_H__
 
+#include <string>
+
 namespace ezn
 {
 
-class FileDialog
-{
-public:
-    FileDialog();
-    ~FileDialog();
-};
+std::string FileDialog();
 
 }
 

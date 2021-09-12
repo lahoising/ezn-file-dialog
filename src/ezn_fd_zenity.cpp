@@ -1,18 +1,27 @@
 #include <iostream>
+#include <cstdio>
 #include <ezn_file_dialog.h>
 
 namespace ezn
 {
 
-FileDialog::FileDialog()
+constexpr decltype(&popen) SpawnProcess = popen;
+constexpr decltype(&pclose) CloseProcess = pclose;
+
+std::string FileDialog()
 {
-    printf("hola\n");
+    std::string selectedFilepath = "";
+
+    FILE *pipe = SpawnProcess("zenity --file-selection", "r");
+    if(!pipe)
+    {
+        fprintf(stderr, "Failed to run process\n");
+        return "";
+    }
+
+    CloseProcess(pipe);
+
+    return selectedFilepath;
 }
-
-FileDialog::~FileDialog()
-{
-
-}
-
 
 }
