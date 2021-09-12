@@ -23,6 +23,7 @@ std::string ExecuteCommand(const char *cmd, SpawnFn SpawnProcess, CloseFn CloseP
     while((fgets(buffer.data(), buffer.size(), pipe.get())) != nullptr)
         output += buffer.data();
 
+    if(output.size() <= 0) return output;
     if(output[output.size()-1] == '\n')
         output = output.substr(0, output.size()-1);
     return output;
