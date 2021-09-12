@@ -13,12 +13,10 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     find_program(p zenity)
     message(${p})
     if(EXISTS ${p})
-        message("machine using zenity")
+        message("using zenity")
         set(src_files ${src_files} "${SRC_DIR}/ezn_fd_zenity.cpp")
     endif()
 endif()
-
-message(${src_files})
 
 set(EZN_FILE_DIALOG_LIB_TYPE SHARED CACHE STRING "Library type of ezn file dialog (e.g. SHARED, STATIC, etc.)")
 add_library(${BIN_NAME} ${EZN_FILE_DIALOG_LIB_TYPE} ${src_files})
