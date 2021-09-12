@@ -3,33 +3,20 @@
 #include <array>
 #include <memory>
 #include <ezn_file_dialog.h>
+#include <ezn_fd_common.h>
 
 namespace ezn
 {
 
-constexpr decltype(&popen) SpawnProcess = popen;
-constexpr decltype(&pclose) CloseProcess = pclose;
+std::string Execute(const char *cmd)
+{
+    return ExecuteCommand<decltype(&popen),decltype(&pclose)>(cmd, popen, pclose); 
+}
 
 std::string FileDialog()
 {
-    std::string selectedFilepath = "";
-    std::array<char,128> buffer;
-
     char cmd[] = "zenity --file-selection";
-    std::unique_ptr<FILE,decltype(CloseProcess)> pipe(SpawnProcess(cmd, "r"), CloseProcess);
-
-    if(!pipe)
-    {
-        fprintf(stderr, "Failed to run process\n");
-        return "";
-    }
-
-    while((fgets(buffer.data(), buffer.size(), pipe.get())) != nullptr)
-        selectedFilepath += buffer.data();
-
-    printf("selected file: %s\n", selectedFilepath.c_str());
-
-    return selectedFilepath;
+    return Execute(cmd);
 }
 
 }

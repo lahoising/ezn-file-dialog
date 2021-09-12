@@ -4,7 +4,7 @@ project(ezn-file-dialog)
 set(BIN_NAME ezn_file_dialog)
 
 set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
-set(src_files "${INC_DIR}/ezn_file_dialog.h")
+set(src_files "${INC_DIR}/ezn_file_dialog.h" "${INC_DIR}/ezn_fd_common.h")
 
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
