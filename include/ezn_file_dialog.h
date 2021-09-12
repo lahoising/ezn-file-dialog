@@ -7,6 +7,8 @@ namespace ezn
 {
 
 std::string FileDialog();
+std::string FileDialogMultiple();
+std::string FileDialogDirectory();
 
 }
 

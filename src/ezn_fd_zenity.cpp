@@ -19,4 +19,14 @@ std::string FileDialog()
     return Execute(cmd);
 }
 
+std::string FileDialogMultiple()
+{
+    return Execute("zenity --file-selection --multiple");
+}
+
+std::string FileDialogDirectory()
+{
+    return Execute("zenity --file-selection --directory");
+}
+
 }
